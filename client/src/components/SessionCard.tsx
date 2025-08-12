@@ -1,17 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-interface Session {
-  id: string;
-  title: string;
-  description?: string;
-  guideName: string;
-  duration: number;
-  imageUrl?: string;
-  isPremium: boolean;
-  likes: number;
-  plays: number;
-}
+import { Session } from "@shared/schema";
 
 interface SessionCardProps {
   session: Session;

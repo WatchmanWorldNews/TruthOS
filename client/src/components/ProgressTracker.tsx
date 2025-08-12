@@ -1,21 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
-
-interface User {
-  currentStreak: number;
-  totalMinutes: number;
-  sessionsCompleted: number;
-  badgesEarned: number;
-}
-
-interface Stats {
-  activeUsers: number;
-  totalMinutesToday: number;
-  totalMembers: number;
-}
+import { User, GlobalStats } from "@shared/schema";
 
 interface ProgressTrackerProps {
   user?: User;
-  stats?: Stats;
+  stats?: GlobalStats;
 }
 
 export default function ProgressTracker({ user, stats }: ProgressTrackerProps) {
@@ -36,25 +24,25 @@ export default function ProgressTracker({ user, stats }: ProgressTrackerProps) {
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-white" data-testid="text-user-streak">
-                      {user.currentStreak}
+                      {user.currentStreak || 0}
                     </div>
                     <div className="text-primary-200 text-sm">Day Streak</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-white" data-testid="text-user-minutes">
-                      {user.totalMinutes.toLocaleString()}
+                      {(user.totalMinutes || 0).toLocaleString()}
                     </div>
                     <div className="text-primary-200 text-sm">Minutes Meditated</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-white" data-testid="text-user-sessions">
-                      {user.sessionsCompleted}
+                      {user.sessionsCompleted || 0}
                     </div>
                     <div className="text-primary-200 text-sm">Sessions Completed</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-white" data-testid="text-user-badges">
-                      {user.badgesEarned}
+                      {user.badgesEarned || 0}
                     </div>
                     <div className="text-primary-200 text-sm">Badges Earned</div>
                   </div>
@@ -77,13 +65,13 @@ export default function ProgressTracker({ user, stats }: ProgressTrackerProps) {
                     <div className="flex items-center justify-between">
                       <span>Total minutes today</span>
                       <span className="font-bold text-2xl" data-testid="text-community-minutes">
-                        {(stats.totalMinutesToday / 1000000).toFixed(1)}M
+                        {(stats.totalMinutes / 1000000).toFixed(1)}M
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span>Community members</span>
                       <span className="font-bold text-2xl" data-testid="text-community-members">
-                        {(stats.totalMembers / 1000).toFixed(0)}K
+                        {(stats.activeUsers / 10).toFixed(0)}K
                       </span>
                     </div>
                   </div>

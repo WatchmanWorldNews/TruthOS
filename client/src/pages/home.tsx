@@ -2,33 +2,34 @@ import { useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
-import NavigationHeader from "@/components/NavigationHeader";
-import CategoryGrid from "@/components/CategoryGrid";
-import SessionCard from "@/components/SessionCard";
-import ProgressTracker from "@/components/ProgressTracker";
+import NavigationHeader from "../components/NavigationHeader";
+import CategoryGrid from "../components/CategoryGrid";
+import SessionCard from "../components/SessionCard";
+import ProgressTracker from "../components/ProgressTracker";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { isUnauthorizedError } from "@/lib/authUtils";
+import { GlobalStats, Session, Category, User } from "@shared/schema";
 
 export default function Home() {
   const { toast } = useToast();
   const { user, isAuthenticated, isLoading } = useAuth();
 
-  const { data: stats } = useQuery({
+  const { data: stats } = useQuery<GlobalStats>({
     queryKey: ["/api/stats"],
     refetchInterval: 30000,
   });
 
-  const { data: featuredSessions, error: featuredError } = useQuery({
+  const { data: featuredSessions, error: featuredError } = useQuery<Session[]>({
     queryKey: ["/api/sessions/featured"],
   });
 
-  const { data: popularSessions, error: popularError } = useQuery({
+  const { data: popularSessions, error: popularError } = useQuery<Session[]>({
     queryKey: ["/api/sessions/popular"],
   });
 
-  const { data: categories, error: categoriesError } = useQuery({
+  const { data: categories, error: categoriesError } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
   });
 

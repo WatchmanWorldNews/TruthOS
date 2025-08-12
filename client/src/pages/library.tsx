@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
-import NavigationHeader from "@/components/NavigationHeader";
-import CategoryGrid from "@/components/CategoryGrid";
-import SessionCard from "@/components/SessionCard";
+import { Session, Category } from "@shared/schema";
+import NavigationHeader from "../components/NavigationHeader";
+import CategoryGrid from "../components/CategoryGrid";
+import SessionCard from "../components/SessionCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -16,11 +17,11 @@ export default function Library() {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { data: categories, error: categoriesError } = useQuery({
+  const { data: categories, error: categoriesError } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
   });
 
-  const { data: sessions, error: sessionsError } = useQuery({
+  const { data: sessions, error: sessionsError } = useQuery<Session[]>({
     queryKey: ["/api/sessions", selectedCategory],
     queryFn: async () => {
       const params = new URLSearchParams();

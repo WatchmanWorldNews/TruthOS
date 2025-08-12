@@ -5,13 +5,15 @@ import { setupAuth, isAuthenticated } from "./replitAuth";
 import Stripe from "stripe";
 import { insertSessionSchema, insertJournalEntrySchema } from "@shared/schema";
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
+// Initialize Stripe only if secret key is provided
+let stripe: Stripe | null = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: "2023-10-16",
+  });
+} else {
+  console.warn("STRIPE_SECRET_KEY not provided. Subscription features will be disabled.");
 }
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2023-10-16",
-});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
@@ -200,6 +202,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Stripe subscription routes
   app.post('/api/get-or-create-subscription', isAuthenticated, async (req: any, res) => {
     try {
+      if (!stripe) {
+        return res.status(503).json({ message: "Subscription service not available. Stripe not configured." });
+      }
+
       const userId = req.user.claims.sub;
       let user = await storage.getUser(userId);
       
@@ -214,9 +220,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
           expand: ['payment_intent']
         });
 
+        const paymentIntent = (invoice as any).payment_intent;
         res.json({
           subscriptionId: subscription.id,
-          clientSecret: (invoice.payment_intent as any)?.client_secret,
+          clientSecret: paymentIntent?.client_secret,
         });
         return;
       }
@@ -260,6 +267,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Webhook to handle successful payments
   app.post('/api/stripe-webhook', async (req, res) => {
+    if (!stripe) {
+      return res.status(503).json({ message: "Webhook service not available. Stripe not configured." });
+    }
+
     const sig = req.headers['stripe-signature'];
     
     try {

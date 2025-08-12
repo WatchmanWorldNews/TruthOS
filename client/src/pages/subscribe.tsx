@@ -1,5 +1,5 @@
 import { useStripe, Elements, PaymentElement, useElements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { useEffect, useState } from 'react';
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
@@ -12,10 +12,13 @@ import { Button } from "@/components/ui/button";
 
 // Make sure to call `loadStripe` outside of a component's render to avoid
 // recreating the `Stripe` object on every render.
-if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
-  throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
+// Initialize Stripe only if public key is provided
+let stripePromise: Promise<Stripe | null> | null = null;
+if (import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
+  stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+} else {
+  console.warn("VITE_STRIPE_PUBLIC_KEY not provided. Subscription features will be disabled.");
 }
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const SubscribeForm = ({ planType }: { planType: 'monthly' | 'annual' }) => {
   const stripe = useStripe();

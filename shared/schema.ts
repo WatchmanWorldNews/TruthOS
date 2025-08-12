@@ -137,3 +137,11 @@ export type InsertUserSessionProgress = z.infer<typeof insertUserSessionProgress
 export type InsertUserFavorite = z.infer<typeof insertUserFavoriteSchema>;
 export type InsertDailyProgress = z.infer<typeof insertDailyProgressSchema>;
 export type InsertJournalEntry = z.infer<typeof insertJournalEntrySchema>;
+
+// Additional types for API responses
+export type GlobalStats = {
+  activeUsers: number;
+  totalSessions: number;
+  totalMinutesMeditated: number;
+  totalUsersRegistered: number;
+};

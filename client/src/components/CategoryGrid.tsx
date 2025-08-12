@@ -1,20 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
-
-interface Category {
-  id: string;
-  name: string;
-  description?: string;
-  icon?: string;
-  color?: string;
-  sessionCount: number;
-}
+import { Category } from "@shared/schema";
 
 interface CategoryGridProps {
   categories: Category[];
 }
 
 export default function CategoryGrid({ categories }: CategoryGridProps) {
-  const getIconClass = (icon: string | undefined) => {
+  const getIconClass = (icon: string | null | undefined) => {
     switch (icon) {
       case 'heart': return 'fas fa-heart text-red-600';
       case 'moon': return 'fas fa-moon text-indigo-600';
@@ -28,7 +20,7 @@ export default function CategoryGrid({ categories }: CategoryGridProps) {
     }
   };
 
-  const getColorClass = (color: string | undefined) => {
+  const getColorClass = (color: string | null | undefined) => {
     switch (color) {
       case 'red': return 'bg-red-100 group-hover:bg-red-200';
       case 'indigo': return 'bg-indigo-100 group-hover:bg-indigo-200';

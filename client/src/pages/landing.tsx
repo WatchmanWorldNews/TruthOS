@@ -2,14 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
+import { GlobalStats, Session } from "@shared/schema";
 
 export default function Landing() {
-  const { data: stats } = useQuery({
+  const { data: stats } = useQuery<GlobalStats>({
     queryKey: ["/api/stats"],
     refetchInterval: 30000, // Update every 30 seconds
   });
 
-  const { data: featuredSessions } = useQuery({
+  const { data: featuredSessions } = useQuery<Session[]>({
     queryKey: ["/api/sessions/featured"],
   });
 

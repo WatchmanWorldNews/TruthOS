@@ -3,6 +3,7 @@ import { useParams } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Session as SessionType, UserFavorite } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -27,7 +28,7 @@ export default function Session() {
   const [showJournal, setShowJournal] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout>();
 
-  const { data: session, error: sessionError } = useQuery({
+  const { data: session, error: sessionError } = useQuery<SessionType>({
     queryKey: ["/api/sessions", id],
     enabled: !!id,
   });
