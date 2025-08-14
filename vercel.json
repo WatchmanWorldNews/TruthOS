@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build"
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "@vercel/node@3.0.21"
     }
-  ],
+  },
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
     {
       "src": "/admin",
       "dest": "/truthos-console/index.html"
@@ -14,10 +17,6 @@
     {
       "src": "/console", 
       "dest": "/truthos-console/index.html"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
     },
     {
       "src": "/(.*)",
