@@ -1,48 +1,23 @@
 {
   "version": 2,
-  "framework": null,
-  "buildCommand": "npm install",
-  "outputDirectory": "./",
-  "functions": {
-    "watchman-world-news/server.ts": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "destination": "/watchman-world-news/server.ts"
-    },
-    {
-      "source": "/admin",
-      "destination": "/truthos-console/index.html"
-    },
-    {
-      "source": "/console",
-      "destination": "/truthos-console/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/watchman-world-news/index.html"
+      "src": "package.json",
+      "use": "@vercel/static-build"
     }
   ],
-  "headers": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
-        }
-      ]
+      "src": "/admin",
+      "dest": "/truthos-console/index.html"
+    },
+    {
+      "src": "/console", 
+      "dest": "/truthos-console/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/watchman-world-news/index.html"
     }
   ]
 }
