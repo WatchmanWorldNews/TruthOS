@@ -16,8 +16,12 @@
       "dest": "/truthos-console/index.html"
     },
     {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/watchman-world-news/index.html"
+      "dest": "/index.html"
     }
   ]
 }
