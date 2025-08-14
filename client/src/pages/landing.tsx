@@ -21,7 +21,7 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-primary-600">Mindful</h1>
+              <h1 className="text-2xl font-bold text-primary-600">Fountains</h1>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -43,10 +43,10 @@ export default function Landing() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                Find Peace in Your Daily Life
+                Rest in Living Waters
               </h1>
               <p className="text-xl text-primary-100 mb-8 leading-relaxed">
-                Join millions discovering calm, clarity, and inner peace through guided meditation, mindfulness practices, and daily reflections.
+                Experience biblical meditation, peaceful sleep sounds, and spiritual guidance. Let streams of living water refresh your soul daily.
               </p>
               
               {/* Live Stats Counter */}
@@ -173,19 +173,19 @@ export default function Landing() {
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">5 daily meditations</span>
+                    <span className="text-gray-700">3 daily biblical meditations</span>
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">Basic progress tracking</span>
+                    <span className="text-gray-700">Sleep sounds & bedtime prayers</span>
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">7-day intro challenge</span>
+                    <span className="text-gray-700">7-day spiritual journey</span>
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">Community access</span>
+                    <span className="text-gray-700">Daily scripture & reflection</span>
                   </li>
                 </ul>
                 
@@ -208,34 +208,34 @@ export default function Landing() {
               <CardContent className="p-8">
                 <div className="text-center mb-8">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Premium Monthly</h3>
-                  <div className="text-4xl font-bold text-gray-900 mb-2">$9.99</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">$4.99</div>
                   <p className="text-gray-600">per month</p>
                 </div>
                 
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">10,000+ guided sessions</span>
+                    <span className="text-gray-700">Unlimited biblical meditations</span>
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">Offline download</span>
+                    <span className="text-gray-700">AI-personalized spiritual content</span>
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">50+ expert guides</span>
+                    <span className="text-gray-700">Premium sleep stories & prayers</span>
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">Customizable sessions</span>
+                    <span className="text-gray-700">Offline listening</span>
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">Advanced progress tracking</span>
+                    <span className="text-gray-700">Advanced spiritual tracking</span>
                   </li>
                   <li className="flex items-center">
                     <i className="fas fa-check text-green-500 mr-3"></i>
-                    <span className="text-gray-700">Premium sleep content</span>
+                    <span className="text-gray-700">Extended nature & water sounds</span>
                   </li>
                 </ul>
                 
@@ -254,9 +254,9 @@ export default function Landing() {
               <CardContent className="p-8">
                 <div className="text-center mb-8">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Premium Annual</h3>
-                  <div className="text-4xl font-bold text-gray-900 mb-2">$69.99</div>
+                  <div className="text-4xl font-bold text-gray-900 mb-2">$39.99</div>
                   <p className="text-gray-600">per year</p>
-                  <Badge className="bg-green-100 text-green-800 mt-2">Save $50/year</Badge>
+                  <Badge className="bg-green-100 text-green-800 mt-2">Save $20/year</Badge>
                 </div>
                 
                 <ul className="space-y-4 mb-8">
@@ -300,9 +300,9 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="col-span-1 lg:col-span-2">
-              <h3 className="text-2xl font-bold text-white mb-4">Mindful</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Fountains</h3>
               <p className="text-gray-300 mb-6 max-w-md">
-                Your companion for daily mindfulness, meditation, and inner peace. Join millions discovering calm in their everyday lives.
+                Your source for biblical meditation, peaceful sleep, and spiritual renewal. Experience the living waters that refresh your soul.
               </p>
             </div>
 
@@ -328,7 +328,7 @@ export default function Landing() {
           </div>
 
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-300 text-sm">
-            <p>© 2024 Mindful. All rights reserved.</p>
+            <p>© 2024 Fountains. All rights reserved.</p>
           </div>
         </div>
       </footer>
